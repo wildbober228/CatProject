@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {Route, Router, Switch} from "react-router-dom";
+import CatMainPage from "./pages/CatMainPage";
+import CatInfoPage from "./pages/CatInfoPage";
+import { withRouter, } from "react-router";
+import { useHistory } from "react-router-dom";
+import {IntlProvider} from "react-intl";
+import {LOCALES} from "./i18n/locales";
+import {messages} from "./i18n/messages";
+import SelectLanguage from "./components/SelectLanguage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
 
-export default App;
+    const H = useHistory();
+
+    const getInitialLocale = () => {
+        const savedLocale = localStorage.getItem('locale')
+        return savedLocale || LOCALES.ENGLISH
+    }
+
+    const [currentLocale, setCurrentLocale] = useState(getInitialLocale())
+
+    return (
+        <IntlProvider messages={messages[currentLocale]} locale={currentLocale} defaultLocale = {LOCALES.ENGLISH}>
+            <SelectLanguage currentLocale={currentLocale} setCurrentLocale={setCurrentLocale}/>
+        <Router history={H}>
+            <Switch>
+                <Route key = "home" exact = {true} path="/" component={CatMainPage}/>
+                <Route key = "info" path="/info/:id" component={CatInfoPage}/>
+            </Switch>
+        </Router>
+        </IntlProvider>
+    );
+};
+
+export default withRouter(App);
