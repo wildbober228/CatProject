@@ -1,6 +1,6 @@
 import {AnyAction, Observable} from "redux";
 import {ofType} from "redux-observable";
-import {CatActionType} from "../../types/cat";
+import {CatActionType} from "../types/cat";
 import { ajax} from 'rxjs/ajax'
 import {mergeMap, map, catchError, tap} from 'rxjs/operators'
 import {of} from 'rxjs'

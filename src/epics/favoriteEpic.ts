@@ -1,7 +1,7 @@
 import {AnyAction} from "redux";
 import {ofType} from "redux-observable";
 import {map} from 'rxjs/operators'
-import {FavoriteActionType} from "../../types/favorite";
+import {FavoriteActionType} from "../types/favorite";
 
 export const addFavoriteCat = (id : string | undefined) => ({
     type: FavoriteActionType.START_ADD_FAVORITE,

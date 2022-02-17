@@ -12,7 +12,7 @@ import {List, ListRowProps} from "react-virtualized";
 import MessageEmptyList from "../MessageEmptyList";
 import ShowAddNewBreed from "../ShowAddNewBreed";
 import {useDispatch} from "react-redux";
-import {fetchCats} from "../epics/catEpic";
+import {fetchCats} from "../../epics/catEpic";
 
 const listHeight = 850;
 const rowHeight = 220;

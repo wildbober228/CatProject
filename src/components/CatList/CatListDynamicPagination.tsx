@@ -3,7 +3,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions} from "../../hooks/useActions";
 import Cat from "../Cat";
 import {useDispatch} from "react-redux";
-import {fetchCatsDynamicPagination} from "../epics/catEpic";
+import {fetchCatsDynamicPagination} from "../../epics/catEpic";
 
 const CatListDynamicPagination = () => {
 

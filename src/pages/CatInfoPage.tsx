@@ -3,7 +3,7 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 import {Redirect, withRouter} from "react-router";
 import CatInfo from "../components/CatInfo";
-import {fetchCat, fetchCatEpic} from "../components/epics/catEpic";
+import {fetchCat, fetchCatEpic} from "../epics/catEpic";
 import {useDispatch} from "react-redux";
 
 const CatInfoPage = (props: any) => {

@@ -11,7 +11,7 @@ import ModalForm from "./ModalFormComponent/ModalForm";
 import CatCharacteristics from "./CatCharacteristics";
 import {FormattedMessage} from "react-intl";
 import CatImage from "./Image/CatImage";
-import {addFavoriteCat, deleteFavoriteCat} from "./epics/favoriteEpic";
+import {addFavoriteCat, deleteFavoriteCat} from "../epics/favoriteEpic";
 
 const Cat: FC<ICat> = ({
            id = '0',
