@@ -3,12 +3,15 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 import {Redirect, withRouter} from "react-router";
 import CatInfo from "../components/CatInfo";
+import {fetchCat, fetchCatEpic} from "../components/epics/catEpic";
+import {useDispatch} from "react-redux";
 
 const CatInfoPage = (props: any) => {
     const {cats, error, loading} = useTypedSelector(state => state.cat)
-    const {fetchCat} = useActions()
+    //const {fetchCat} = useActions()
+    const dispatch = useDispatch()
     useEffect(() => {
-        fetchCat(props.match.params.id)
+        dispatch(fetchCat(props.match.params.id))
     }, [])
 
     if (!loading){

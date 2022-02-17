@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {fetchCats} from "../../store/action-creators/cat";
+//import {fetchCats} from "../../store/action-creators/cat";
 import {useActions} from "../../hooks/useActions";
 import Cat from "../Cat";
 import TongleFilter from "../TongleFilter"
@@ -11,6 +11,8 @@ import {FormattedMessage} from "react-intl";
 import {List, ListRowProps} from "react-virtualized";
 import MessageEmptyList from "../MessageEmptyList";
 import ShowAddNewBreed from "../ShowAddNewBreed";
+import {useDispatch} from "react-redux";
+import {fetchCats} from "../epics/catEpic";
 
 const listHeight = 850;
 const rowHeight = 220;
@@ -19,7 +21,7 @@ const rowWidth = 1450;
 
 const CatList: React.FC = () => {
     const {cats, error, loading} = useTypedSelector(state => state.cat)
-    const {fetchCats} = useActions()
+    // const {fetchCats} = useActions()
     const catsArray = useTypedSelector(state => state.cat)
 
     const [checkFilter,setCheckFilter] = useState(true)
@@ -29,9 +31,9 @@ const CatList: React.FC = () => {
     const store = require('store')
     const [fetchLoad, setFetchLoad] = useState(false)
 
-
+    const dispatch = useDispatch()
     useEffect(() => {
-        fetchCats()
+        dispatch(fetchCats())
     }, [])
 
 
@@ -123,14 +125,20 @@ const CatList: React.FC = () => {
     const resetFilters = () => {
         setMultiValue([""])
         setShow(false)
-        fetchCats()
+        dispatch(fetchCats())
     }
 
 
     if (!loading){
-        return <h1>
-            <FormattedMessage id = 'loading'/>
-        </h1>
+        if(!error) {
+            return <h1>
+                <FormattedMessage id='loading'/>
+            </h1>
+        } else {
+            return <h1>
+                <FormattedMessage id='error_from_loading'/>
+            </h1>
+        }
     }
 
     if (error){

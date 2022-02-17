@@ -1,8 +1,6 @@
 import {Dispatch} from "redux";
 import {FavoriteAction, FavoriteActionType} from "../../types/favorite";
 
-const store = require('store')
-
 export const addFavoriteCat = (idCat: string) => {
     return (dispath: Dispatch<FavoriteAction>) => {
         try{

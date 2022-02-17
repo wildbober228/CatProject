@@ -2,6 +2,8 @@ import React, {UIEvent ,useEffect, useState} from 'react';
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions} from "../../hooks/useActions";
 import Cat from "../Cat";
+import {useDispatch} from "react-redux";
+import {fetchCatsDynamicPagination} from "../epics/catEpic";
 
 const CatListDynamicPagination = () => {
 
@@ -9,15 +11,11 @@ const CatListDynamicPagination = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [fetching, setFetching] = useState(true)
 
-    const {fetchCatsDynamicPagination} = useActions()
-
+    //const {fetchCatsDynamicPagination} = useActions()
+    const dispatch = useDispatch()
     useEffect(() => {
         if(fetching)
-        fetchCatsDynamicPagination({
-            setFetching,
-            setCurrentPage,
-            currentPage,
-        })
+            dispatch(fetchCatsDynamicPagination({payload: {currentPage, setCurrentPage, setFetching}}))
     }, [fetching])
 
     useEffect( () => {

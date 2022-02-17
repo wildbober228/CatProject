@@ -11,6 +11,7 @@ import ModalForm from "./ModalFormComponent/ModalForm";
 import CatCharacteristics from "./CatCharacteristics";
 import {FormattedMessage} from "react-intl";
 import CatImage from "./Image/CatImage";
+import {addFavoriteCat, deleteFavoriteCat} from "./epics/favoriteEpic";
 
 const Cat: FC<ICat> = ({
            id = '0',
@@ -27,7 +28,7 @@ const Cat: FC<ICat> = ({
 
 }) => {
     const dispatch = useDispatch()
-    const {addFavoriteCat, deleteFavoriteCat} = useActions()
+    //const {addFavoriteCat, deleteFavoriteCat} = useActions() //addFavoriteCat
     const store = require('store')
 
     const [showCharacteristic, setShowCharacteristic] = useState(false)
@@ -41,12 +42,15 @@ const Cat: FC<ICat> = ({
     const addToFavorite = () => {
 
         if(!store.get('favoriteCats').includes(id)) {
+            console.log("dad")
+            dispatch(addFavoriteCat(id))
             store.set('favoriteCats', [...store.get('favoriteCats'), id])
-            addFavoriteCat(id);
+            //addFavoriteCat(id);
+
         }
         else {
-            deleteFavoriteCat(id);
-            const newCatFavArray = store.get('favoriteCats').filter((favorite: any) => favorite !== id)
+            dispatch(deleteFavoriteCat(id));
+            const newCatFavArray = store.get('favoriteCats').filter((favorite: string) => favorite !== id)
             store.clearAll();
             store.set('favoriteCats', newCatFavArray);
         }

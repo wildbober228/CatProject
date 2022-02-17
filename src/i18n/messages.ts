@@ -2,6 +2,7 @@ import {LOCALES} from "./locales";
 
 export const messages = {
     [LOCALES.ENGLISH]:{
+        error_from_loading: 'Error from loading cats',
         add_new_breed: 'Add new breed',
         filter_with: 'Filter with: ',
         next_breed: 'Fill breed',
@@ -41,6 +42,7 @@ export const messages = {
 
     },
     [LOCALES.RUSSIAN]:{
+        error_from_loading: 'Ошибка при загрузке котов',
         add_new_breed: 'Добавить породу',
         filter_with: 'Фильтр: ',
         next_breed: 'Заполнить поля',

@@ -4,7 +4,17 @@ export interface FavoriteState {
 
 export enum FavoriteActionType {
     ADD_FAVORITE = 'ADD_FAVORITE',
-    DELETE_FAVORITE = 'DELETE_FAVORITE'
+    DELETE_FAVORITE = 'DELETE_FAVORITE',
+    START_ADD_FAVORITE = 'START_ADD_FAVORITE',
+    START_DELETE_FAVORITE = 'START_DELETE_FAVORITE'
+}
+
+interface StartAddFavorite{
+    type: FavoriteActionType.START_ADD_FAVORITE
+}
+
+interface StartDeleteFavorite{
+    type: FavoriteActionType.START_DELETE_FAVORITE
 }
 
 interface AddFavorite{
@@ -17,4 +27,4 @@ interface DeleteFavorite{
     payload: string;
 }
 
-export type FavoriteAction = AddFavorite | DeleteFavorite;
+export type FavoriteAction = AddFavorite | DeleteFavorite | StartAddFavorite | StartDeleteFavorite;
