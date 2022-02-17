@@ -13,6 +13,12 @@ export const addFavoriteCatComplete = (payload : string | undefined) => ({
     payload
 })
 
+export const addFavoriteCatEpic = (action$: any) => action$.pipe(
+    ofType(FavoriteActionType.START_ADD_FAVORITE),
+    map((action: AnyAction) => deleteFavoriteCatComplete(action.id))
+);
+
+
 export const deleteFavoriteCat = (id : string | undefined) => ({
     type: FavoriteActionType.START_DELETE_FAVORITE,
     id
@@ -23,7 +29,7 @@ export const deleteFavoriteCatComplete = (payload : string | undefined) => ({
     payload
 })
 
-export const addFavoriteCatEpic = (action$: any) => action$.pipe(
-    ofType(FavoriteActionType.START_ADD_FAVORITE),
+export const deleteFavoriteCatEpic = (action$: any) => action$.pipe(
+    ofType(FavoriteActionType.START_DELETE_FAVORITE),
     map((action: AnyAction) => deleteFavoriteCatComplete(action.id))
 );
