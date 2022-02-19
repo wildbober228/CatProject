@@ -111,6 +111,7 @@ const CatList: React.FC = () => {
     }
 
     const showFavoritesCats = () => {
+        //const showFavCat = checkFilter
         setCheckFilter(!checkFilter)
         if(checkFilter === true) {
             catsArray.cats = setFavoriteCat();
@@ -118,13 +119,14 @@ const CatList: React.FC = () => {
         }
         else{
             setShow(false)
-            fetchCats()
+            dispatch(fetchCats())
         }
     }
 
     const resetFilters = () => {
         setMultiValue([""])
         setShow(false)
+        setCheckFilter(!checkFilter)
         dispatch(fetchCats())
     }
 
@@ -159,9 +161,14 @@ const CatList: React.FC = () => {
     }
 
 
-    const funcSetMultiValue = (option : string) => {
+    const funcSetMultiValue = (option : string, deleteFiler: boolean) => { //option : string
         console.log(option)
-        setMultiValue([...multiValue, option])
+        if(deleteFiler == false) {
+            setMultiValue([...multiValue, option])
+        } else {
+            setMultiValue(multiValue.filter(f => f !== option))
+        }
+        //setMultiValue(options)
         console.log(multiValue)
         setShow(true)
     }
@@ -171,7 +178,7 @@ const CatList: React.FC = () => {
             <div className="wrapper">
                 <ShowAddNewBreed/>
                 <div className="sidebar">
-                    <TongleFilter changeState={showFavoritesCats}/>
+                    <TongleFilter value={checkFilter} changeState={showFavoritesCats}/>
                     <MultiSelect filterOptions={cats} multiValue={multiValue} setMultiValue={funcSetMultiValue}/>
                     <hr/>
                     <FormattedMessage id = 'filter_with'/>
@@ -202,7 +209,7 @@ const CatList: React.FC = () => {
         return (
             <div className="wrapper">
                 <div className="sidebar">
-                    <TongleFilter changeState={showFavoritesCats}/>
+                    <TongleFilter value={checkFilter} changeState={showFavoritesCats}/>
                     <MultiSelect filterOptions={cats} multiValue={multiValue} setMultiValue={funcSetMultiValue} />
                     <hr/>
                     <FormattedMessage id = 'filter_with'/>
