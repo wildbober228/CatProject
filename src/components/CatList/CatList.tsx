@@ -26,6 +26,7 @@ const CatList: React.FC = () => {
 
     const [checkFilter,setCheckFilter] = useState(true)
     const [show, setShow] = useState(false)
+    const [catFilter, setCatFilter] = useState(false)
 
     const [multiValue, setMultiValue] = useState([""])
     const store = require('store')
@@ -111,8 +112,9 @@ const CatList: React.FC = () => {
     }
 
     const showFavoritesCats = () => {
-        //const showFavCat = checkFilter
         setCheckFilter(!checkFilter)
+        setCatFilter(false)
+        setMultiValue([""])
         if(checkFilter === true) {
             catsArray.cats = setFavoriteCat();
             setShow(true)
@@ -127,6 +129,7 @@ const CatList: React.FC = () => {
         setMultiValue([""])
         setShow(false)
         setCheckFilter(!checkFilter)
+        setCatFilter(false)
         dispatch(fetchCats())
     }
 
@@ -162,14 +165,12 @@ const CatList: React.FC = () => {
 
 
     const funcSetMultiValue = (option : string, deleteFiler: boolean) => { //option : string
-        console.log(option)
+        setCatFilter(true)
         if(deleteFiler == false) {
             setMultiValue([...multiValue, option])
         } else {
             setMultiValue(multiValue.filter(f => f !== option))
         }
-        //setMultiValue(options)
-        console.log(multiValue)
         setShow(true)
     }
 
@@ -225,7 +226,25 @@ const CatList: React.FC = () => {
                     </div>
                 </div>
                 <div className="main">
-                    {cats.filter((cat) => multiValue.includes(cat.origin)).map(cat =>
+                    {catFilter && cats.filter((cat) => multiValue.includes(cat.origin)).map(cat =>
+                        <div className='child' key={cat.id}>
+                            <Cat
+                                id={cat.id}
+                                name={cat.name}
+                                image={cat.image}
+                                origin={cat.origin}
+                                adaptability={cat.adaptability}
+                                affection_level={cat.affection_level}
+                                child_friendly={cat.child_friendly}
+                                dog_friendly={cat.dog_friendly}
+                                energy_level={cat.energy_level}
+                                experimental={cat.experimental}
+                                grooming={cat.grooming}
+                                hairless={cat.hairless}
+                            />
+                        </div>
+                    )}
+                    {!checkFilter && !catFilter && cats.map(cat =>
                         <div className='child' key={cat.id}>
                             <Cat
                                 id={cat.id}
