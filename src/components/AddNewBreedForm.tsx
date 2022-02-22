@@ -162,6 +162,7 @@ const AddNewBreedForm = () => {
             maxLifeSpan.setValue(cat.life_span_max)
             minLifeSpan.setValue(cat.life_span_min)
             countyCode.setValue(cat.country_code)
+            setOriginCat(cat.origin)
             setAdaptability(cat.adaptability)
             setAffection_level(cat.affection_level)
             setHairless(cat.hairless)
@@ -186,7 +187,7 @@ const AddNewBreedForm = () => {
     const onChangeOrigin = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
         console.log(value)
-        SetOriginCat(value)
+        setOriginCat(value)
     }
 
     const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -237,7 +238,7 @@ const AddNewBreedForm = () => {
     const [grooming, setGrooming] = useState<number | undefined>(1)
     const [hairless, setHairless] = useState<number | undefined>(1)
     const [child_friendly, setChild_friendly] = useState<number | undefined>(1)
-    const [originCat, SetOriginCat] = useState<string | undefined>(" ")
+    const [originCat, setOriginCat] = useState<string | undefined>(" ")
 
     const { formatMessage } = useIntl();
 
