@@ -126,11 +126,12 @@ const AddNewBreedForm = () => {
 
             setBreedImage(imageInitialState)
             setCatBreed(catInitialState)
+            alert(formatMessage({ id: "breed_add_success" }))
+            clearCatFields()
         }
     }
 
     const checkError = () => {
-
         if  (nameBreed.isEmpty){
             return true
         }
@@ -154,10 +155,34 @@ const AddNewBreedForm = () => {
         return false
     }
 
+    const clearCatFields = () => {
+        let cat = catInitialState
+        console.log(cat)
+        nameBreed.setValue(cat.name)
+        maxLifeSpan.setValue(cat.life_span_max)
+        minLifeSpan.setValue(cat.life_span_min)
+        countyCode.setValue(cat.country_code)
+        setOriginCat(cat.origin)
+        setAdaptability(cat.adaptability)
+        setAffection_level(cat.affection_level)
+        setHairless(cat.hairless)
+        setGrooming(cat.grooming)
+        setEnergy_level(cat.energy_level)
+        setDog_friendly(cat.dog_friendly)
+        setChild_friendly(cat.child_friendly)
+        setExperimental(cat.experimental)
+        let testString : string = cat.image as unknown as string
+        setImage(testString)
+        let arrayTemperament: string[] = []
+        let catTemp = cat.temperament
+
+        arrayTemperament = catTemp!.split(" ")
+        setTemperament(arrayTemperament)
+    }
+
     const fillCatFields = () => {
         if(currentCatToLoad < testState.length) {
             let cat = testState[currentCatToLoad]
-            console.log(cat)
             nameBreed.setValue(cat.name)
             maxLifeSpan.setValue(cat.life_span_max)
             minLifeSpan.setValue(cat.life_span_min)

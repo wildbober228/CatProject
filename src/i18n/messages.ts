@@ -4,6 +4,7 @@ export const messages = {
     [LOCALES.ENGLISH]:{
         error_from_loading: 'Error from loading cats',
         add_new_breed: 'Add new breed',
+        breed_add_success: 'Breed add success',
         filter_with: 'Filter with: ',
         next_breed: 'Fill breed',
         confirm: 'Add breed',
@@ -44,6 +45,7 @@ export const messages = {
     [LOCALES.RUSSIAN]:{
         error_from_loading: 'Ошибка при загрузке котов',
         add_new_breed: 'Добавить породу',
+        breed_add_success: 'Порода успешно добавленна',
         filter_with: 'Фильтр: ',
         next_breed: 'Заполнить поля',
         confirm: 'Добавить породу',
