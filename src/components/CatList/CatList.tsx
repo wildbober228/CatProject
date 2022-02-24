@@ -176,9 +176,9 @@ const CatList: React.FC = () => {
 
     if(show === false) {
         return (
-            <div className="wrapper">
-                <ShowAddNewBreed/>
-                <div className="sidebar">
+            <div className="flexbox-container">
+            <div className="wrapper flexbox-item-up">
+                <div className="sidebar flexbox-item-up">
                     <TongleFilter value={checkFilter} changeState={showFavoritesCats}/>
                     <MultiSelect filterOptions={cats} multiValue={multiValue} setMultiValue={funcSetMultiValue}/>
                     <hr/>
@@ -188,13 +188,16 @@ const CatList: React.FC = () => {
                             {val}
                         </div>
                     )}
-                    <div>
+                    <div className="flexbox-item-up ">
                         <button onClick={resetFilters}>
                             <FormattedMessage id='reset_filters'/>
                         </button>
+                        <ShowAddNewBreed/>
                     </div>
                 </div>
-                <div className="main">
+            </div>
+                <div className="flexbox-container">
+                    <div className="flexbox-item-center">
                         <List
                             width={rowWidth}
                             height={listHeight}
@@ -202,14 +205,16 @@ const CatList: React.FC = () => {
                             rowRenderer={renderRow}
                             rowCount={cats.length - 8}
                             overscanRowCount={3}/>
+                    </div>
                 </div>
             </div>
         );
     }
     else{
         return (
-            <div className="wrapper">
-                <div className="sidebar">
+            <div className="flexbox-container">
+            <div className="wrapper flexbox-item-up">
+                <div className="sidebar flexbox-item-up">
                     <TongleFilter value={checkFilter} changeState={showFavoritesCats}/>
                     <MultiSelect filterOptions={cats} multiValue={multiValue} setMultiValue={funcSetMultiValue} />
                     <hr/>
@@ -219,13 +224,15 @@ const CatList: React.FC = () => {
                             {val}
                         </div>
                     )}
-                    <div>
+                    <div className="sidebar flexbox-item-up">
                         <button onClick={resetFilters}>
                             <FormattedMessage id = 'reset_filters'/>
                         </button>
                     </div>
                 </div>
-                <div className="main">
+            </div>
+                <div className="flexbox-container">
+                    <div className="flexbox-container-center">
                     {catFilter && cats.filter((cat) => multiValue.includes(cat.origin)).map(cat =>
                         <div className='child' key={cat.id}>
                             <Cat
@@ -244,6 +251,7 @@ const CatList: React.FC = () => {
                             />
                         </div>
                     )}
+
                     {!checkFilter && !catFilter && cats.map(cat =>
                         <div className='child' key={cat.id}>
                             <Cat
@@ -262,8 +270,10 @@ const CatList: React.FC = () => {
                             />
                         </div>
                     )}
+                    </div>
                 </div>
             </div>
+
         );
     }
 };
