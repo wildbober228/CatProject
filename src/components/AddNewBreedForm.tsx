@@ -269,7 +269,7 @@ const AddNewBreedForm = () => {
 
     return (
         <div>
-            <Container>
+            <Container >
                 <Form onSubmit={(event) => onSubmit(event)}  className='add-breed-form'>
                     <FormGroup>
                         <Label for="name">{formatMessage({ id: "Name" })}</Label>

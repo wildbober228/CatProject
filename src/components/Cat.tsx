@@ -68,7 +68,7 @@ const Cat: FC<ICat> = ({
                     <Button size="sm" color="info" onClick={ChangeLoadingHandler} tag={Link} to={"/info/"+ id}>
                         <FormattedMessage id = 'show_more'/>
                     </Button>
-                    <Button onClick = {() => setShowCharacteristic(true)}>
+                    <Button onClick = {() => setShowCharacteristic(!showCharacteristic)}>
                         I
                     </Button>
                     <ModalForm visible={showCharacteristic} setVisible={setShowCharacteristic}>
