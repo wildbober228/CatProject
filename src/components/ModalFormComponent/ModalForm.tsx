@@ -1,5 +1,7 @@
-import React, {FC} from "react";
+import React, {FC, ReactDOM} from "react";
 import * as styles from './ModalForm.module.scss'
+import {Portal} from "react-portal";
+
 
 interface IModalForm {
     visible:boolean;
@@ -14,11 +16,13 @@ const ModalForm:FC<IModalForm> = ({children, visible, setVisible}) => {
     }
 
     return (
+        <Portal>
         <div className = {rootClasses.join(' ')} onClick={() => setVisible(false)}>
             <div className={styles.default.myModalContent} onClick={(event => event.stopPropagation())}>
                 {children}
             </div>
         </div>
+        </Portal>
     );
 };
 

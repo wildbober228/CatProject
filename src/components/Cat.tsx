@@ -71,6 +71,7 @@ const Cat: FC<ICat> = ({
                     <Button onClick = {() => setShowCharacteristic(!showCharacteristic)}>
                         I
                     </Button>
+
                     <ModalForm visible={showCharacteristic} setVisible={setShowCharacteristic}>
                        <CatCharacteristics
                            catName={name}
